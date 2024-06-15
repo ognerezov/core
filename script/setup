@@ -26,13 +26,13 @@ if [ ! -n "$VIRTUAL_ENV" ]; then
 fi
 
 if ! [ -x "$(command -v uv)" ]; then
-  python3 -m pip install uv
+  python3 -m pip install uv --trusted-host pypi.org
 fi
 
 script/bootstrap
 
 pre-commit install
-uv pip install -e . --config-settings editable_mode=compat --constraint homeassistant/package_constraints.txt
+uv pip install --trusted-host pypi.org -e . --config-settings editable_mode=compat --constraint homeassistant/package_constraints.txt
 python3 -m script.translations develop --all
 
 hass --script ensure_config -c config

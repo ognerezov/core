@@ -6,6 +6,8 @@ To update, run python3 -m script.hassfest
 FLOWS = {
     "helper": [
         "derivative",
+        "double_check_core",
+        "double_check_data",
         "group",
         "integration",
         "min_max",
