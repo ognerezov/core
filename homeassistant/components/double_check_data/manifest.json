@@ -1,0 +1,16 @@
+{
+  "domain": "double_check_data",
+  "name": "DataProvider",
+  "codeowners": [
+    "@ognerezov"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/double_check_data",
+  "homekit": {},
+  "integration_type": "helper",
+  "iot_class": "local_push",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": []
+}

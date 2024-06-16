@@ -14,6 +14,7 @@ class ControlledDevice(Base):
     __table_args__ = ({})
     id = Column(Integer, primary_key=True)
     entity_id = Column(String, nullable= False, primary_key=True)
+    power_consumption = Column(Integer, nullable, False)
 
     def __repr__(self) -> str:
         """Return string representation of instance for debugging."""
