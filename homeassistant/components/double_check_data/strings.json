@@ -4,8 +4,9 @@
       "user": {
         "description": "New NEW_NAME Sensor",
         "data": {
-          "entity_id": "Input sensor",
-          "name": "Name"
+          "entity_id": "Device",
+          "name": "Name",
+          "powerConsumption": "Power consumption"
         }
       }
     }

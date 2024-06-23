@@ -18,27 +18,17 @@ from homeassistant.helpers.schema_config_entry_flow import (
 
 from .const import DOMAIN
 
-OPTIONS_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
-            selector.EntitySelectorConfig(domain=SENSOR_DOMAIN)
-        ),
-    }
-)
 
 CONFIG_SCHEMA = vol.Schema(
     {
+        vol.Required("device"): selector.DeviceSelector(),
         vol.Required("name"): selector.TextSelector(),
-        vol.Required("powerConsumption"): selector.NumberSelector(),
+        vol.Required("powerConsumption"): selector.NumberSelector(selector.NumberSelectorConfig(min=0, max=100000, step=10, unit_of_measurement='Watt')),
     }
-).extend(OPTIONS_SCHEMA.schema)
+)
 
 CONFIG_FLOW: dict[str, SchemaFlowFormStep | SchemaFlowMenuStep] = {
     "user": SchemaFlowFormStep(CONFIG_SCHEMA)
-}
-
-OPTIONS_FLOW: dict[str, SchemaFlowFormStep | SchemaFlowMenuStep] = {
-    "init": SchemaFlowFormStep(OPTIONS_SCHEMA)
 }
 
 
@@ -46,8 +36,6 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     """Handle a config or options flow for DataProvider."""
 
     config_flow = CONFIG_FLOW
-    # TODO remove the options_flow if the integration does not have an options flow
-    options_flow = OPTIONS_FLOW
 
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str:
         """Return config entry title."""
